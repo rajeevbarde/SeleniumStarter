@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<Property name="basePath">./logs</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="File"
+			fileName="${basePath}/prints-info.log"
+			filePattern="${basePath}/prints-info-%d{yyyy-MM-dd}.log"
+			append="false">
+			<LevelRangeFilter minLevel="INFO" maxLevel="INFO"
+				onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<SizeBasedTriggeringPolicy size="19500KB" />
+		</RollingFile>
+
+		<RollingFile name="ErrorFile"
+			fileName="${basePath}/prints-error.log"
+			filePattern="${basePath}/prints-error-%d{yyyy-MM-dd}.log"
+			append="false">
+			<LevelRangeFilter minLevel="ERROR" maxLevel="ERROR"
+				onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<SizeBasedTriggeringPolicy size="19500KB" />
+		</RollingFile>
+
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="utils" level="debug" additivity="false">
+			<AppenderRef ref="File" />
+			<AppenderRef ref="ErrorFile" />
+		</Logger>
+
+		<Root level="warn">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

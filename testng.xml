@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test">
+		<parameter name="propPath" value="/config/config.properties"/>
+		<parameter name="excelPath" value="/config/testData.xls" />
+		<parameter name="sheet" value="0" />
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="tests.VerifyMotherTongue" />
+		</classes>
+	</test>
+</suite>
